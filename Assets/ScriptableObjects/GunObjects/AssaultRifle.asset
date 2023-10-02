@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63669c5a29d07cc4e986ab038865e007, type: 3}
+  m_Name: AssaultRifle
+  m_EditorClassIdentifier: 
+  name: AssaultRifle
+  damage: 10
+  maxDistance: 150
+  Auto: 1
+  currentAmmo: 30
+  magSize: 30
+  fireRate: 400
+  reloadTime: 1.5
+  reloading: 0
+  recoilX: -3
+  recoilY: 3
+  recoilZ: 0.45
+  kickBackZ: 0.15
+  snappiness: 8
+  returnSpeed: 4

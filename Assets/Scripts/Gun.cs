@@ -35,7 +35,8 @@ public class Gun : MonoBehaviour
         PlayerShoot.reloadInput += StartReloading;
 
         cameraRecoil = FindObjectOfType<CameraRecoil>();
-        //uiAmmoCount = FindObjectOfType<UI_AmmoCount>();
+        uiAmmoCount = FindObjectOfType<UI_AmmoCount>();
+        uiAmmoCount?.UpdateAmmo.Invoke();
         gunData.reloading = false;
     }
 
