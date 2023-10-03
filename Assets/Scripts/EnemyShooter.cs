@@ -26,6 +26,8 @@ public class EnemyShooter : MonoBehaviour, IDamageable
     TrailRenderer bulletTrail;
     [SerializeField]
     private float accuracy = 0.8f;
+    [SerializeField]
+    private AudioSource shootSFX;
 
     private float timeSinceLastShot = 0;
     private Transform player;
@@ -34,6 +36,7 @@ public class EnemyShooter : MonoBehaviour, IDamageable
     private bool isDead = false;
 
     private DissolvingController dc;
+
 
     private bool CanShoot() => timeSinceLastShot > 1f / (fireRate / 60f);
 
@@ -120,6 +123,8 @@ public class EnemyShooter : MonoBehaviour, IDamageable
     {
 
         yield return new WaitForSeconds(0.1f);
+
+        shootSFX.Play();
 
         if (Physics.Raycast(muzzleTrans.position, dir, out RaycastHit hitInfo, detectionRange))
         {

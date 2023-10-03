@@ -18,6 +18,6 @@ public class ResetTrigger : MonoBehaviour
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         Debug.Log("Teleport");
-        player.transform.position = initPosition;
+        player.position = initPosition;
     }
 }
