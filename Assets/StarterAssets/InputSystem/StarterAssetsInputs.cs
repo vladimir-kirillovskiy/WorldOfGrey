@@ -16,6 +16,7 @@ namespace StarterAssets
 		public bool sprint;
         public bool shoot;
         public bool reload;
+        public bool esc;
 
         [Header("Movement Settings")]
 		public bool analogMovement;
@@ -58,6 +59,11 @@ namespace StarterAssets
             ReloadInput(value.isPressed);
         }
 
+        public void OnEsc(InputValue value)
+        {
+            EscInput(value.isPressed);
+        }
+
 #endif
 
 
@@ -89,6 +95,11 @@ namespace StarterAssets
         public void ReloadInput(bool newReloadState)
         {
             reload = newReloadState;
+        }
+
+        public void EscInput(bool newEscState)
+        {
+            esc = newEscState;
         }
 
         private void OnApplicationFocus(bool hasFocus)
