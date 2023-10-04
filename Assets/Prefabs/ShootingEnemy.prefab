@@ -1087,7 +1087,6 @@ MonoBehaviour:
   fireRate: 60
   muzzleTrans: {fileID: 2706706852525319827}
   muzzleFlash: {fileID: 4100582395286858523}
-  shotSound: {fileID: 0}
   damage: 10
   bulletTrail: {fileID: 8419378424495347158, guid: 39d0d9aa3d8f4a948a0b008258141f60,
     type: 3}
@@ -1231,7 +1230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skinnedMesh: {fileID: 798889859827560659}
-  vfxGraph: {fileID: 0}
+  vfxGraph: {fileID: 8582918388038512922}
   refreshRate: 0.0125
   dissolveRate: 0.01
 --- !u!82 &5837978858478697849
@@ -1745,6 +1744,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2706706852525319827}
     m_Modifications:
+    - target: {fileID: 7683177573289841852, guid: 5ea60945746f7cb439e43b30fff86350,
+        type: 3}
+      propertyPath: stopAction
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7683177573289841854, guid: 5ea60945746f7cb439e43b30fff86350,
         type: 3}
       propertyPath: m_Name

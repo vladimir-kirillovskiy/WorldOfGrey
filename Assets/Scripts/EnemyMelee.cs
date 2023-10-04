@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,9 +10,14 @@ public class EnemyMelee : MonoBehaviour, IDamageable
     private float detectionRange = 40f;
     [SerializeField]
     private float minDistance = 1f;
-    
+    [SerializeField]
+    private float attackRange = 2f;
+
     [SerializeField] 
     private float health = 100f;
+
+    [SerializeField]
+    private float damage = 20f;
 
     private NavMeshAgent enemyNMA;
 
@@ -57,9 +63,9 @@ public class EnemyMelee : MonoBehaviour, IDamageable
                 if (distanceToPlayer < minDistance && !isAttacking)
                 {
                     isAttacking= true;
-                    transform.LookAt(player.position);
-                    Debug.Log("Trigger Melee");
                     animator.SetBool("MeleeHit", true);
+                    transform.LookAt(player.position);
+                    PerformMeleeAttack();
                     StartCoroutine(resetAttack());
                 } else
                 {
@@ -103,4 +109,31 @@ public class EnemyMelee : MonoBehaviour, IDamageable
         isAttacking = false;
     }
 
+
+    void PerformMeleeAttack()
+    {
+        RaycastHit hit;
+
+        // Calculate direction from enemy to player
+        Vector3 direction = (transform.position - Camera.main.transform.position).normalized;
+
+        // Perform a SphereCast to check if the player is within attack range
+        if (Physics.SphereCast(transform.position, attackRange, direction, out hit, attackRange))
+        {
+            if (hit.collider.CompareTag("Player")) // Assuming the player has the "Player" tag
+            {
+                IDamageable damageable = hit.transform.GetComponent<IDamageable>();
+                damageable?.Damage(damage);
+            }
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
+    }
 }

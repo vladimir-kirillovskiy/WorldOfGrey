@@ -18,8 +18,6 @@ public class EnemyShooter : MonoBehaviour, IDamageable
     private Transform muzzleTrans;
     [SerializeField] 
     private ParticleSystem muzzleFlash;
-    [SerializeField] 
-    AudioSource shotSound;
     [SerializeField]
     private float damage = 10f;
     [SerializeField] 
@@ -125,6 +123,7 @@ public class EnemyShooter : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(0.1f);
 
         shootSFX.Play();
+        muzzleFlash.Play();
 
         if (Physics.Raycast(muzzleTrans.position, dir, out RaycastHit hitInfo, detectionRange))
         {
