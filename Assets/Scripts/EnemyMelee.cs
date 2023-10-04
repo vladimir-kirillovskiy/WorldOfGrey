@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class EnemyMelee : MonoBehaviour, IDamageable
@@ -19,23 +18,34 @@ public class EnemyMelee : MonoBehaviour, IDamageable
     [SerializeField]
     private float damage = 20f;
 
+    [HideInInspector] public UnityEvent DamageDealer;
+
     private NavMeshAgent enemyNMA;
 
     private Transform player;
+    private PlayerHealth playerHealth;
     private Animator animator;
     private bool isDead = false;
     private Collider col;
     private DissolvingController dc;
 
     private bool isAttacking = false;
+    private bool isDamageDone = false;
 
     private void Start()
     {
+        DamageDealer.AddListener(DealDamage);
         animator = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player").transform;
+        playerHealth = player.GetComponent<PlayerHealth>();
         enemyNMA = gameObject.GetComponent<NavMeshAgent>();
         col = gameObject.GetComponent<Collider>();
         dc = GetComponent<DissolvingController>();
+    }
+
+    private void OnDestroy()
+    {
+        DamageDealer.RemoveListener(DealDamage);
     }
 
     private void Update()
@@ -62,12 +72,9 @@ public class EnemyMelee : MonoBehaviour, IDamageable
 
                 if (distanceToPlayer < minDistance && !isAttacking)
                 {
-                    isAttacking= true;
-                    animator.SetBool("MeleeHit", true);
-                    transform.LookAt(player.position);
                     PerformMeleeAttack();
-                    StartCoroutine(resetAttack());
-                } else
+                } 
+                else
                 {
                     animator.SetBool("MeleeHit", false);
                 }
@@ -95,6 +102,7 @@ public class EnemyMelee : MonoBehaviour, IDamageable
     private void AttackStart()
     {
         isAttacking = true;
+        isDamageDone = false;
     }
 
     private void AttackEnd()
@@ -112,28 +120,20 @@ public class EnemyMelee : MonoBehaviour, IDamageable
 
     void PerformMeleeAttack()
     {
-        RaycastHit hit;
+        isAttacking = true;
+        animator.SetBool("MeleeHit", true);
+        transform.LookAt(player.position);
+        StartCoroutine(resetAttack());
+    }
 
-        // Calculate direction from enemy to player
-        Vector3 direction = (transform.position - Camera.main.transform.position).normalized;
-
-        // Perform a SphereCast to check if the player is within attack range
-        if (Physics.SphereCast(transform.position, attackRange, direction, out hit, attackRange))
+    private void DealDamage()
+    {
+        if(isAttacking && !isDamageDone)
         {
-            if (hit.collider.CompareTag("Player")) // Assuming the player has the "Player" tag
-            {
-                IDamageable damageable = hit.transform.GetComponent<IDamageable>();
-                damageable?.Damage(damage);
-            }
+            playerHealth.Damage(damage);
+            isDamageDone = true;
         }
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
-    }
 }
