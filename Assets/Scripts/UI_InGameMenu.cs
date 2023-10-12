@@ -47,16 +47,21 @@ public class UI_InGameMenu : MonoBehaviour
     
     public void ContinueGame()
     {
-        menuPanel.SetActive(false);
-        playerInput.enabled = true;
         Time.timeScale = 1;
-        Cursor.lockState = CursorLockMode.Locked;
         isPaused= false;    
+        playerInput.enabled = true;
+        menuPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

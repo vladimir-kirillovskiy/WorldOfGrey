@@ -1082,7 +1082,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f213e0e4ba362e4e88850c8ceff6cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 40
+  detectionRange: 100
   rig: {fileID: 1754684566457735393}
   fireRate: 60
   muzzleTrans: {fileID: 2706706852525319827}
@@ -1090,8 +1090,9 @@ MonoBehaviour:
   damage: 10
   bulletTrail: {fileID: 8419378424495347158, guid: 39d0d9aa3d8f4a948a0b008258141f60,
     type: 3}
-  accuracy: 1
+  accuracy: 0.99
   shootSFX: {fileID: 5837978858478697849}
+  destroyTime: 1.5
   health: 100
 --- !u!136 &3128003720480655349
 CapsuleCollider:

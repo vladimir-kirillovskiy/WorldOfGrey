@@ -688,11 +688,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478a9a1a242387e468ba8d99b2ff9e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 40
+  detectionRange: 100
   minDistance: 2
   attackRange: 2
   health: 100
-  damage: 20
+  damage: 10
+  destroyTime: 1.5
   DamageDealer:
     m_PersistentCalls:
       m_Calls: []
@@ -856,7 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aa989c586d31ac4fa43a9e4ae0c88ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
   enemy: {fileID: 8545909361191129578}
 --- !u!4 &8667085581065887849 stripped
 Transform:

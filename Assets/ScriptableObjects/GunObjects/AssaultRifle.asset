@@ -13,17 +13,18 @@ MonoBehaviour:
   m_Name: AssaultRifle
   m_EditorClassIdentifier: 
   name: AssaultRifle
-  damage: 10
-  maxDistance: 150
+  available: 0
+  damage: 25
+  maxDistance: 200
   Auto: 1
-  currentAmmo: 30
+  currentAmmo: 22
   magSize: 30
   fireRate: 400
   reloadTime: 1.6
   reloading: 0
-  recoilX: -3
+  recoilX: -3.5
   recoilY: 3
-  recoilZ: 0.45
+  recoilZ: 0.35
   kickBackZ: 0.15
   snappiness: 8
   returnSpeed: 4

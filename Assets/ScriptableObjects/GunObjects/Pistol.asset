@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   name: Pistol
-  damage: 16
-  maxDistance: 100
+  available: 1
+  damage: 30
+  maxDistance: 150
   Auto: 0
-  currentAmmo: 8
+  currentAmmo: 18
   magSize: 18
   fireRate: 200
   reloadTime: 1

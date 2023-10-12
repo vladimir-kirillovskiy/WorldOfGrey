@@ -26,6 +26,8 @@ public class EnemyShooter : MonoBehaviour, IDamageable
     private float accuracy = 0.8f;
     [SerializeField]
     private AudioSource shootSFX;
+    [SerializeField]
+    private float destroyTime = 1.5f;
 
     private float timeSinceLastShot = 0;
     private Transform player;
@@ -46,7 +48,7 @@ public class EnemyShooter : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, destroyTime);
             isDead = true;
             animator.SetBool("isDead", isDead);
             dc.Dissolve();

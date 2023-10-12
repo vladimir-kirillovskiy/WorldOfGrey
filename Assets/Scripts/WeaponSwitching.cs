@@ -36,6 +36,8 @@ public class WeaponSwitching : MonoBehaviour
         {
             if (keyActions[i].ToInputAction().IsPressed() && timeSinceLastSwitch >= switchTime)
             {
+                GunData gunData = weapons[i].GetComponent<Gun>().gunData;
+                if (!gunData.available) continue;
                 selectedWeapon = i;
             }
 
@@ -61,8 +63,11 @@ public class WeaponSwitching : MonoBehaviour
 
     private void Select(int weaponIndex)
     {
+        
+        
         for (int i = 0; i < weapons.Length; i++)
         {
+            
             weapons[i].gameObject.SetActive(i == weaponIndex);
         }
 

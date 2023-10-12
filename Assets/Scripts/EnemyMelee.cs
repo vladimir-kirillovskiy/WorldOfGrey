@@ -17,6 +17,8 @@ public class EnemyMelee : MonoBehaviour, IDamageable
 
     [SerializeField]
     private float damage = 20f;
+    [SerializeField]
+    private float destroyTime = 1.5f;
 
     [HideInInspector] public UnityEvent DamageDealer;
 
@@ -89,7 +91,7 @@ public class EnemyMelee : MonoBehaviour, IDamageable
         health -= damage;
         if (health <= 0)
         {
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, destroyTime);
             isDead = true;
             animator.SetBool("isDead", isDead);
             col.enabled = false;
